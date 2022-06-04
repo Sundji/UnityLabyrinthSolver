@@ -12,51 +12,44 @@ public class Tile : MonoBehaviour
 
     public static Action<Vector2> OnTileSelectedAction = null;
     public static Action<Vector2> OnTileMarkedAction = null;
-    public static Action<Vector2> OnTileUnmarkedAction = null;
 
     [SerializeField] private GameObject _selectionIndicator = null;
 
     private SpriteRenderer _spriteRenderer = null;
 
-    private Vector2 _position = Vector2.zero;
     private TileType _tileType = TileType.PASSAGE;
+
+    private Vector2 Position => transform.position;
 
     private void Awake()
     {
-        _position = transform.position;
         _selectionIndicator.SetActive(false);
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         OnTileSelectedAction += OnTileSelected;
         OnTileMarkedAction += OnTileMarked;
-        OnTileUnmarkedAction += OnTileUnmarked;
     }
 
     private void OnDestroy()
     {
         OnTileSelectedAction -= OnTileSelected;
         OnTileMarkedAction -= OnTileMarked;
-        OnTileUnmarkedAction -= OnTileUnmarked;
     }
 
     private void OnMouseDown()
     {
-        if (_tileType == TileType.PASSAGE) OnTileSelectedAction?.Invoke(_position);
+        if (_tileType == TileType.PASSAGE) OnTileSelectedAction?.Invoke(Position);
     }
 
     private void OnTileSelected(Vector2 tilePosition)
     {
-        _selectionIndicator.SetActive(_position == tilePosition);
+        _selectionIndicator.SetActive(Position == tilePosition);
+        if (_tileType == TileType.PASSAGE) _spriteRenderer.color = _PASSAGE_UNMARKED_COLOR;
     }
 
     private void OnTileMarked(Vector2 tilePosition)
     {
-        if (_position == tilePosition) _spriteRenderer.color = _PASSAGE_MARKED_COLOR;
-    }
-
-    private void OnTileUnmarked(Vector2 tilePosition)
-    {
-        if (_position == tilePosition) _spriteRenderer.color = _PASSAGE_UNMARKED_COLOR;
+        if (Position == tilePosition) _spriteRenderer.color = _PASSAGE_MARKED_COLOR;
     }
 
     public void InitializeTile(TileType tileType)
