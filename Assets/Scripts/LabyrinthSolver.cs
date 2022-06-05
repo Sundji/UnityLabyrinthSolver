@@ -69,7 +69,9 @@ public class LabyrinthSolver : MonoBehaviour
 
         _exitFound = false;
         _includedTilePositions.Clear();
+        _includedTilePositions.TrimExcess();
         _solutionEntries.Clear();
+        _solutionEntries.TrimExcess();
 
         Vector2 currentPosition = _selectedTilePosition;
         Direction currentDirection = Direction.LEFT;
@@ -80,8 +82,8 @@ public class LabyrinthSolver : MonoBehaviour
 
             if (_includedTilePositions.Contains(currentPosition))
             {
-                SolutionEntry entryToCheck = _solutionEntries.Peek();
-                currentDirection = FindNewDirection(entryToCheck);
+                entry = _solutionEntries.Peek();
+                currentDirection = FindNewDirection(entry);
 
                 while (currentDirection == Direction.DIRECTIONLESS)
                 {
@@ -91,10 +93,12 @@ public class LabyrinthSolver : MonoBehaviour
                         Debug.LogError("Cannot find a solution...");
                         return;
                     }
-                    entryToCheck = _solutionEntries.Peek();
-                    currentDirection = FindNewDirection(entryToCheck);
+                    entry = _solutionEntries.Peek();
+                    currentDirection = FindNewDirection(entry);
                 }
-                entry = entryToCheck;
+
+                _includedTilePositions.TrimExcess();
+                _solutionEntries.TrimExcess();
             }
             else
             {

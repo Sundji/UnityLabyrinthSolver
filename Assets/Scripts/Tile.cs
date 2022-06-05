@@ -6,9 +6,9 @@ public class Tile : MonoBehaviour
     public static readonly string PASSAGE_TAG = "Passage";
     public static readonly string WALL_TAG = "Wall";
 
-    private static readonly Color _PASSAGE_MARKED_COLOR = Color.white;
-    private static readonly Color _PASSAGE_UNMARKED_COLOR = Color.gray;
-    private static readonly Color _WALL_COLOR = Color.black;
+    private static readonly Color _PASSAGE_MARKED_COLOR = Color.cyan;
+    private static readonly Color _PASSAGE_UNMARKED_COLOR = Color.white;
+    private static readonly Color _WALL_COLOR = Color.gray;
 
     public static Action<Vector2> OnTileSelectedAction = null;
     public static Action<Vector2> OnTileMarkedAction = null;

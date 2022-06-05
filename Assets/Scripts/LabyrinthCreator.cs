@@ -9,23 +9,36 @@ public class LabyrinthCreator : MonoBehaviour
     [SerializeField] private Tile _tilePrefab = null;
 
     private List<Tile> _tiles = new List<Tile>();
+    private Camera _mainCamera = null;
 
-    public void CreateLabyrinthFromFile(string fileName)
+    private Camera MainCamera
+    {
+        get
+        {
+            if (_mainCamera == null) _mainCamera = Camera.main;
+            return _mainCamera;
+        }
+    }
+
+    private void AdjustCamera(int columnCount, int rowCount)
+    {
+        MainCamera.transform.position = new Vector3(columnCount / 2.0f, -rowCount / 2.0f, MainCamera.transform.position.z);
+        MainCamera.orthographicSize = columnCount > rowCount ? columnCount / 2.0f : rowCount * Screen.width / Screen.height / 2.0f;
+    }
+
+    public void CreateLabyrinthFromFile(TextAsset labyrinthFile)
     {
         ResetLabyrinth(shouldClear: true);
 
-        TextAsset labyrinthFile = Resources.Load(fileName) as TextAsset;
-        if (labyrinthFile == null)
-        {
-            Debug.LogError("There is no file under file name " + fileName + "!");
-            return;
-        }
+        int columnCount = 0;
+        int rowCount = 0;
 
         int counter = 0;
         int tileCount = _tiles.Count;
         Vector2 currentPosition = Vector2.zero;
         foreach (string line in labyrinthFile.text.Split("\n"))
         {
+            columnCount = 0;
             foreach (char character in line.Trim())
             {
                 Tile tile = null;
@@ -41,14 +54,17 @@ public class LabyrinthCreator : MonoBehaviour
                     _tiles.Add(tile);
                 }
                 tile.InitializeTile(character == _PASSAGE_CHARACTER ? TileType.PASSAGE : TileType.WALL);
+                columnCount++;
                 counter++;
                 currentPosition.x++;
             }
             currentPosition.x = 0;
             currentPosition.y--;
+            rowCount++;
         }
 
         for (; counter < tileCount; counter++) _tiles[counter].gameObject.SetActive(false);
+        AdjustCamera(columnCount, rowCount);
     }
 
     public void ResetLabyrinth(bool shouldClear)
