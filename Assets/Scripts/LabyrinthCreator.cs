@@ -26,9 +26,11 @@ public class LabyrinthCreator : MonoBehaviour
         MainCamera.orthographicSize = columnCount > rowCount ? columnCount / 2.0f : rowCount * Screen.width / Screen.height / 2.0f;
     }
 
-    public void CreateLabyrinthFromFile(TextAsset labyrinthFile)
+    public void CreateLabyrinthFromFile(string fileName)
     {
         ResetLabyrinth(shouldClear: true);
+
+        TextAsset labyrinthFile = Resources.Load(fileName) as TextAsset;
 
         int columnCount = 0;
         int rowCount = 0;

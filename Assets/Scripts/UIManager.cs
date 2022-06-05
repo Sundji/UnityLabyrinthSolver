@@ -10,12 +10,12 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Dropdown _picker = null;
     [SerializeField] private Button _createButton = null;
     [SerializeField] private Button _solveButton = null;
-    [SerializeField] private List<TextAsset> _labyrinthTextFiles = new List<TextAsset>();
+    [SerializeField] private string[] _labyrinthTextFiles = null;
 
     private void Awake()
     {
         List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
-        foreach (TextAsset file in _labyrinthTextFiles) options.Add(new TMP_Dropdown.OptionData(file.name));
+        foreach (string fileName in _labyrinthTextFiles) options.Add(new TMP_Dropdown.OptionData(fileName));
         _picker.ClearOptions();
         _picker.AddOptions(options);
 

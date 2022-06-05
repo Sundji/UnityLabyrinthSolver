@@ -4,7 +4,7 @@ using UnityEngine;
 public class LabyrinthSolver : MonoBehaviour
 {
     private const float _COLLISION_RADIUS = 0.1f;
-    private static readonly HashSet<Direction> _DIRECTIONS = new HashSet<Direction>() { Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN };
+    private static readonly Direction[] _DIRECTIONS = new Direction[] { Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN };
 
     private static readonly Dictionary<Direction, Vector2> _DIRECTION_OFFSETS = new Dictionary<Direction, Vector2>()
     {

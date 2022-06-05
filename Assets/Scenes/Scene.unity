@@ -888,9 +888,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 908016878}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00012207031, y: -0.000030517578, z: 0}
-  m_LocalScale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1106,10 +1106,9 @@ MonoBehaviour:
   _createButton: {fileID: 1240213362}
   _solveButton: {fileID: 1356247039}
   _labyrinthTextFiles:
-  - {fileID: 4900000, guid: 987d38af4bdf8aa4ea08f4bd9521642d, type: 3}
-  - {fileID: 4900000, guid: a4a8a9e0ab248274ba8f88a3bbe1e65a, type: 3}
-  - {fileID: 4900000, guid: fd2711a1f8dad12429e7ee147d39e0f7, type: 3}
-  - {fileID: 4900000, guid: e4ba18972b7ae3f48bc81c1f7d3af9e9, type: 3}
+  - Labyrinth1
+  - Labyrinth2
+  - Labyrinth3
 --- !u!1 &1068417746
 GameObject:
   m_ObjectHideFlags: 0
