@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,6 +31,7 @@ public class LabyrinthSolver : MonoBehaviour
     private void OnDestroy()
     {
         Tile.OnTileSelectedAction -= OnTileSelected;
+        StopAllCoroutines();
     }
 
     private void OnTileSelected(Vector2 tilePosition)
@@ -57,12 +60,12 @@ public class LabyrinthSolver : MonoBehaviour
         return Direction.DIRECTIONLESS;
     }
 
-    public void SolveLabyrinth()
+    private IEnumerator SolveLabyrinthCoroutine(Action onFinishedAction = null)
     {
         if (!_isTileSelected)
         {
             Debug.LogError("No tile selected!");
-            return;
+            yield break;
         }
 
         _isTileSelected = false;
@@ -85,16 +88,21 @@ public class LabyrinthSolver : MonoBehaviour
                 entry = _solutionEntries.Peek();
                 currentDirection = FindNewDirection(entry);
 
+                // if there is no other available direction, go back until you
+                // reach a tile that has other available directions and choose
+                // one of them
                 while (currentDirection == Direction.DIRECTIONLESS)
                 {
                     _includedTilePositions.Remove(_solutionEntries.Pop().TilePosition);
                     if (_solutionEntries.Count == 0)
                     {
                         Debug.LogError("Cannot find a solution...");
-                        return;
+                        onFinishedAction?.Invoke();
+                        yield break;
                     }
                     entry = _solutionEntries.Peek();
                     currentDirection = FindNewDirection(entry);
+                    yield return null;
                 }
 
                 _includedTilePositions.TrimExcess();
@@ -106,20 +114,29 @@ public class LabyrinthSolver : MonoBehaviour
                 _includedTilePositions.Add(currentPosition);
                 _solutionEntries.Push(entry);
 
+                // check if the planned tile is available, if not choose a new direction
                 if (!CheckIfTileReachable(currentPosition + _DIRECTION_OFFSETS[currentDirection])) currentDirection = FindNewDirection(entry);
                 if (currentDirection == Direction.DIRECTIONLESS)
                 {
                     Debug.LogError("Cannot find a solution...");
-                    return;
+                    onFinishedAction?.Invoke();
+                    yield break;
                 }
             }
 
             if (_exitFound) break;
             currentPosition = entry.TilePosition + _DIRECTION_OFFSETS[currentDirection];
             entry.UsedDirections.Add(currentDirection);
+            yield return null;
         }
 
         Debug.LogError("Exit found!");
         foreach (SolutionEntry entry in _solutionEntries) Tile.OnTileMarkedAction?.Invoke(entry.TilePosition);
+        onFinishedAction?.Invoke();
+    }
+
+    public void SolveLabyrinth(Action onFinishedAction = null)
+    {
+        StartCoroutine(SolveLabyrinthCoroutine(onFinishedAction));
     }
 }

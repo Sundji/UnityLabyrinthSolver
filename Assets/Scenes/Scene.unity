@@ -515,6 +515,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 510653693}
+  - component: {fileID: 510653695}
+  - component: {fileID: 510653694}
   m_Layer: 0
   m_Name: Labyrinth
   m_TagString: Untagged
@@ -537,6 +539,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &510653694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510653692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464ce9e4a27a44640a3eac8ed44c137c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &510653695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510653692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff55014373d0d4488e289e41f271a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tileContainer: {fileID: 510653693}
+  _tilePrefab: {fileID: 8225705414476904501, guid: 4e65fc3c63a47d844ab8d2432fb6037b, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,52 +649,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &688091593
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 688091594}
-  - component: {fileID: 688091595}
-  m_Layer: 0
-  m_Name: Labyrinth Creator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &688091594
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688091593}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &688091595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688091593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff55014373d0d4488e289e41f271a3a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tileContainer: {fileID: 510653693}
-  _tilePrefab: {fileID: 8225705414476904501, guid: 4e65fc3c63a47d844ab8d2432fb6037b, type: 3}
 --- !u!1 &749719766
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,50 +846,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!1 &908016878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 908016879}
-  - component: {fileID: 908016880}
-  m_Layer: 0
-  m_Name: Labyrinth Solver
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &908016879
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908016878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &908016880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 908016878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 464ce9e4a27a44640a3eac8ed44c137c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &949272987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,7 +1019,7 @@ RectTransform:
   - {fileID: 1240213361}
   - {fileID: 1356247038}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1100,8 +1038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01ad60d526a36f4ea9e9628d7dd21d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _creator: {fileID: 688091595}
-  _solver: {fileID: 908016880}
+  _creator: {fileID: 510653695}
+  _solver: {fileID: 510653694}
   _picker: {fileID: 312388240}
   _createButton: {fileID: 1240213362}
   _solveButton: {fileID: 1356247039}
@@ -1109,6 +1047,8 @@ MonoBehaviour:
   - Labyrinth1
   - Labyrinth2
   - Labyrinth3
+  - Labyrinth4
+  - Labyrinth5
 --- !u!1 &1068417746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,7 +1151,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1121810687
 GameObject:

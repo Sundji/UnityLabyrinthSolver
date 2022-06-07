@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
         _picker.AddOptions(options);
 
         _createButton.onClick.AddListener(() => _creator.CreateLabyrinthFromFile(_labyrinthTextFiles[_picker.value]));
-        _solveButton.onClick.AddListener(() => _solver.SolveLabyrinth());
+        _solveButton.onClick.AddListener(() => 
+        {
+            _createButton.interactable = false;
+            _solveButton.interactable = false;
+            _solver.SolveLabyrinth(() => { _createButton.interactable = true; _solveButton.interactable = true; });
+        });
     }
 }
